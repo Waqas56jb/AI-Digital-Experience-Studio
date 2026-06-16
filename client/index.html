@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Serene — Premium Wellness & Home Services, On Demand</title>
+<meta name="description" content="Serene connects you with vetted wellness, beauty and home-care professionals. Book trusted massage therapists, skincare specialists, stylists and trainers — at home or in studio, in minutes." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sage:#8BAF8D; --sage-dark:#759E77; --sage-light:#C8DEC9; --sage-pale:#EEF4EE;
+    --cream:#FAF7F2; --warm:#F2ECE3; --white:#FFFFFF;
+    --charcoal:#2A2A28; --mid:#5C5C58; --muted:#9A9A94;
+    --gold:#C9A96E; --gold-light:#E8D5B0; --live:#4CAF50;
+    --border:rgba(42,42,40,0.1); --border-soft:rgba(42,42,40,0.06);
+    --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--charcoal);
+    font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .wrap{padding:6rem 8%}
+
+  /* ---------- typography helpers ---------- */
+  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:500;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--sage)}
+  .eyebrow.center{justify-content:center}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:300;letter-spacing:-0.01em;line-height:1.1}
+  h2.section-title{font-size:clamp(2.2rem,3.5vw,3.2rem);margin:.8rem 0 1rem}
+  .lead{color:var(--mid);font-size:1.02rem;line-height:1.75;max-width:60ch}
+  .italic-sage{font-style:italic;color:var(--sage)}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);
+    font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+    padding:.9rem 2.2rem;border-radius:40px;cursor:pointer;border:none;
+    transition:transform .25s ease,background .3s ease,color .3s ease;white-space:nowrap}
+  .btn-primary{background:var(--charcoal);color:var(--cream)}
+  .btn-primary:hover{background:var(--sage);transform:translateY(-1px)}
+  .btn-sage{background:var(--sage);color:#fff}
+  .btn-sage:hover{background:var(--sage-dark);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--charcoal);border:1.5px solid var(--charcoal)}
+  .btn-outline:hover{background:var(--charcoal);color:var(--cream)}
+  .btn-white{background:#fff;color:var(--sage)}
+  .btn-white:hover{background:var(--cream)}
+  .btn-ghost{background:transparent;color:var(--mid);padding:.9rem 1rem}
+  .btn-ghost:hover{color:var(--charcoal)}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+    justify-content:space-between;padding:1.1rem 8%;background:rgba(250,247,242,0.88);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border-soft)}
+  .logo{font-family:var(--serif);font-size:1.7rem;font-weight:500;letter-spacing:-0.02em}
+  .logo span{color:var(--sage);font-style:italic}
+  .nav-links{display:flex;align-items:center;gap:2.2rem}
+  .nav-links a{font-size:.86rem;font-weight:400;color:var(--mid);transition:color .25s}
+  .nav-links a:hover{color:var(--charcoal)}
+  .nav-cta{display:flex;align-items:center;gap:1rem}
+  .nav-cta .btn{padding:.7rem 1.6rem}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .burger span{width:24px;height:2px;background:var(--charcoal);transition:.3s}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+    align-items:center;gap:4rem;padding:9rem 8% 4rem;overflow:hidden}
+  .hero .circle{position:absolute;border-radius:50%;z-index:0}
+  .hero .c1{width:520px;height:520px;background:var(--sage-pale);top:-160px;left:-160px;opacity:.7}
+  .hero .c2{width:360px;height:360px;background:rgba(200,222,201,0.35);bottom:-120px;right:38%}
+  .hero-text{position:relative;z-index:2}
+  .hero-text h1{font-size:clamp(3rem,5vw,5.2rem);line-height:1.05;margin:1.2rem 0 1.4rem}
+  .hero-text .lead{margin-bottom:2.2rem}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+  .hero-stats{display:flex;gap:2.6rem;margin-top:3rem;flex-wrap:wrap}
+  .hero-stats .num{font-family:var(--serif);font-size:2.4rem;color:var(--charcoal);line-height:1}
+  .hero-stats .lbl{font-size:.78rem;color:var(--muted);letter-spacing:.04em;margin-top:.3rem}
+  .hero-media{position:relative;z-index:2}
+  .hero-media .main-img{border-radius:24px;width:100%;height:560px;object-fit:cover;
+    box-shadow:0 30px 80px rgba(0,0,0,0.12)}
+  .float-badge{position:absolute;background:#fff;border-radius:16px;padding:1rem 1.2rem;
+    box-shadow:0 20px 60px rgba(0,0,0,0.12);display:flex;align-items:center;gap:.8rem;
+    animation:floatUp 3s ease-in-out infinite}
+  .badge-1{top:30px;left:-36px}
+  .badge-2{bottom:46px;right:-30px;animation-delay:.6s}
+  .badge-ava{width:40px;height:40px;border-radius:50%;object-fit:cover}
+  .badge-1 .t1{font-family:var(--serif);font-size:1.1rem}
+  .badge-1 .t2{font-size:.72rem;color:var(--muted)}
+  .live-dot{width:9px;height:9px;border-radius:50%;background:var(--live);
+    animation:pulse 1.5s ease-in-out infinite}
+  .rating-badge{position:absolute;bottom:-26px;left:30px;background:var(--charcoal);
+    color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;align-items:center;gap:.8rem;
+    box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+  .rating-badge .stars{color:var(--gold);letter-spacing:2px}
+  .rating-badge .rnum{font-family:var(--serif);font-size:1.6rem;line-height:1}
+  .rating-badge .rsub{font-size:.7rem;color:rgba(255,255,255,0.55)}
+
+  /* ---------- trust bar ---------- */
+  .trust{background:var(--charcoal);color:#fff;padding:3rem 8%}
+  .trust-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+  .trust .num{font-family:var(--serif);font-size:2.8rem;color:var(--sage-light);line-height:1}
+  .trust .lbl{font-size:.78rem;color:rgba(255,255,255,0.5);letter-spacing:.06em;
+    text-transform:uppercase;margin-top:.5rem}
+
+  /* ---------- how it works ---------- */
+  .how{background:var(--white)}
+  .head-center{text-align:center;max-width:640px;margin:0 auto 3.5rem}
+  .head-center .lead{margin:0 auto}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .step{position:relative;padding:2rem 1.6rem;border-radius:20px;background:var(--cream);
+    transition:transform .3s,box-shadow .3s}
+  .step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+  .step .snum{font-family:var(--serif);font-size:3.4rem;color:var(--sage-light);line-height:1}
+  .step .icon{width:48px;height:48px;border-radius:12px;background:var(--sage-pale);
+    display:flex;align-items:center;justify-content:center;margin:1rem 0}
+  .step h3{font-size:1.4rem;margin-bottom:.5rem}
+  .step p{font-size:.9rem;color:var(--mid);line-height:1.65}
+
+  /* ---------- services ---------- */
+  .services{background:var(--cream)}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem}
+  .grid-4{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .svc-card{position:relative;border-radius:20px;overflow:hidden;height:340px;
+    box-shadow:0 2px 20px rgba(0,0,0,0.04);transition:transform .3s,box-shadow .3s}
+  .svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+  .svc-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .svc-card:hover img{transform:scale(1.05)}
+  .svc-overlay{position:absolute;inset:0;background:linear-gradient(180deg,
+    rgba(42,42,40,0) 40%,rgba(42,42,40,0.85) 100%);display:flex;flex-direction:column;
+    justify-content:flex-end;padding:1.6rem;color:#fff}
+  .svc-overlay .chip{align-self:flex-start;background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(6px);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:.35rem .8rem;border-radius:20px;margin-bottom:.7rem}
+  .svc-overlay h3{font-size:1.6rem;color:#fff}
+  .svc-overlay p{font-size:.84rem;color:rgba(255,255,255,0.75);margin-top:.3rem}
+  .svc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;
+    font-size:.8rem;color:rgba(255,255,255,0.85)}
+  .svc-meta .price{font-family:var(--serif);font-size:1.3rem;color:#fff}
+
+  /* ---------- professionals ---------- */
+  .pros{background:var(--white)}
+  .pro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .pro-card{background:var(--cream);border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);
+    transition:transform .3s,box-shadow .3s}
+  .pro-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+  .pro-photo{position:relative;height:260px;overflow:hidden}
+  .pro-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .pro-card:hover .pro-photo img{transform:scale(1.05)}
+  .pro-photo .status{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.92);
+    border-radius:20px;padding:.3rem .7rem;font-size:.68rem;display:flex;align-items:center;gap:.4rem}
+  .pro-body{padding:1.3rem}
+  .pro-body h3{font-size:1.4rem}
+  .pro-body .role{font-size:.8rem;color:var(--sage);text-transform:uppercase;letter-spacing:.06em;margin:.2rem 0 .8rem}
+  .pro-body .pmeta{display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--border);padding-top:.9rem;font-size:.84rem;color:var(--mid)}
+  .pro-body .pmeta .stars{color:var(--gold)}
+
+  /* ---------- why servify ---------- */
+  .why{background:var(--warm)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .why-media{position:relative}
+  .why-media img{border-radius:24px;width:100%;height:540px;object-fit:cover;
+    box-shadow:0 24px 70px rgba(0,0,0,0.12)}
+  .why-media .exp{position:absolute;bottom:-24px;right:-24px;background:var(--sage);
+    color:#fff;border-radius:18px;padding:1.4rem 1.8rem;text-align:center;
+    box-shadow:0 20px 50px rgba(139,175,141,0.45)}
+  .why-media .exp .n{font-family:var(--serif);font-size:2.6rem;line-height:1}
+  .why-media .exp .l{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+  .feature{display:flex;gap:1.1rem;padding:1.3rem 0;border-bottom:1px solid var(--border)}
+  .feature:last-child{border-bottom:none}
+  .feature .ficon{flex:none;width:48px;height:48px;border-radius:12px;background:var(--sage-pale);
+    display:flex;align-items:center;justify-content:center}
+  .feature h4{font-size:1.35rem;margin-bottom:.3rem}
+  .feature p{font-size:.88rem;color:var(--mid);line-height:1.65}
+
+  /* ---------- articles ---------- */
+  .articles{background:var(--cream)}
+  .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .art-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,0.04);
+    transition:transform .3s,box-shadow .3s}
+  .art-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+  .art-card .img{height:210px;overflow:hidden}
+  .art-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .art-card:hover .img img{transform:scale(1.05)}
+  .art-body{padding:1.5rem}
+  .art-body .tag{font-size:.7rem;color:var(--sage);text-transform:uppercase;letter-spacing:.08em}
+  .art-body h3{font-size:1.5rem;margin:.6rem 0;line-height:1.25}
+  .art-body p{font-size:.86rem;color:var(--mid)}
+  .art-body .meta{font-size:.76rem;color:var(--muted);margin-top:1rem;display:flex;gap:1rem}
+
+  /* ---------- testimonials ---------- */
+  .testi{background:var(--charcoal);color:#fff}
+  .testi .head-center h2{color:#fff}
+  .testi .head-center .lead{color:rgba(255,255,255,0.6)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .testi-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;padding:2rem}
+  .testi-card .stars{color:var(--gold);letter-spacing:2px;margin-bottom:1rem}
+  .testi-card .quote{font-family:var(--serif);font-size:1.35rem;line-height:1.5;
+    color:rgba(255,255,255,0.92);font-style:italic}
+  .testi-card .who{display:flex;align-items:center;gap:.9rem;margin-top:1.6rem}
+  .testi-card .who img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .testi-card .who .nm{font-family:var(--sans);font-size:.92rem;color:#fff}
+  .testi-card .who .rl{font-size:.74rem;color:rgba(255,255,255,0.5)}
+
+  /* ---------- cta ---------- */
+  .cta{position:relative;background:var(--sage);color:#fff;text-align:center;overflow:hidden}
+  .cta .circle{position:absolute;border-radius:50%;background:rgba(255,255,255,0.12)}
+  .cta .cc1{width:340px;height:340px;top:-120px;left:-80px}
+  .cta .cc2{width:260px;height:260px;bottom:-110px;right:-60px}
+  .cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+  .cta h2{font-size:clamp(2.4rem,4vw,3.6rem);color:#fff;margin-bottom:1rem}
+  .cta p{color:rgba(255,255,255,0.85);font-size:1.05rem;margin-bottom:2rem}
+  .cta .btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+  /* ---------- faq ---------- */
+  .faq{background:var(--cream)}
+  .faq-wrap{max-width:820px;margin:0 auto}
+  .faq-item{background:#fff;border:1px solid var(--border-soft);border-radius:16px;
+    margin-bottom:1rem;overflow:hidden}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    padding:1.3rem 1.6rem;font-size:1.1rem;font-family:var(--serif);font-weight:400}
+  .faq-q .pm{font-size:1.6rem;color:var(--sage);transition:transform .3s;line-height:1}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--mid);
+    font-size:.9rem;line-height:1.7;padding:0 1.6rem}
+  .faq-item.open .faq-a{max-height:240px;padding:0 1.6rem 1.4rem}
+  .faq-item.open .pm{transform:rotate(45deg)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--charcoal);color:#fff;padding:5rem 8% 2rem}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:2.5rem;
+    padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .foot-grid .logo{color:#fff;margin-bottom:1rem}
+  .foot-about{color:rgba(255,255,255,0.55);font-size:.88rem;line-height:1.7;max-width:34ch}
+  .foot-social{display:flex;gap:.7rem;margin-top:1.4rem}
+  .foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);
+    display:flex;align-items:center;justify-content:center;transition:.3s}
+  .foot-social a:hover{background:var(--sage);border-color:var(--sage)}
+  .foot-col h4{font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,0.5);margin-bottom:1.2rem}
+  .foot-col a{display:block;color:rgba(255,255,255,0.75);font-size:.9rem;margin-bottom:.7rem;transition:.25s}
+  .foot-col a:hover{color:var(--sage-light)}
+  .foot-news input{width:100%;padding:.85rem 1rem;border-radius:40px;border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.05);color:#fff;font-family:var(--sans);font-size:.86rem;margin:.6rem 0}
+  .foot-news input::placeholder{color:rgba(255,255,255,0.4)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+    gap:1rem;padding-top:2rem;color:rgba(255,255,255,0.45);font-size:.82rem}
+
+  /* ---------- scroll reveal ---------- */
+  .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .fade-up.in{opacity:1;transform:translateY(0)}
+
+  /* ---------- animations ---------- */
+  @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1024px){
+    .grid-4,.pro-grid,.art-grid,.testi-grid,.steps{grid-template-columns:repeat(2,1fr)}
+    .trust-inner{grid-template-columns:repeat(2,1fr);gap:2.5rem}
+    .why-grid{gap:3rem}
+  }
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .burger{display:flex}
+    .nav-links.show{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+      background:var(--cream);padding:1.5rem 8%;gap:1.2rem;border-bottom:1px solid var(--border)}
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:7rem}
+    .hero-actions,.hero-stats{justify-content:center}
+    .hero-media{margin-top:2rem}
+    .why-grid,.grid-4,.art-grid,.testi-grid{grid-template-columns:1fr}
+    .why-media .exp{right:10px}
+  }
+  @media(max-width:640px){
+    .wrap{padding:4rem 5%}
+    nav{padding:1rem 5%}
+    .hero{padding:7rem 5% 3rem}
+    .steps,.pro-grid{grid-template-columns:1fr}
+    .trust-inner{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .sec-head{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a href="#" class="logo">Sere<span>ne</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#how">How it works</a>
+    <a href="#services">Services</a>
+    <a href="#pros">Professionals</a>
+    <a href="#why">Why Serene</a>
+    <a href="#articles">Journal</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#" class="btn btn-ghost">Sign in</a>
+    <a href="#cta" class="btn btn-sage">Book now</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="circle c1"></div>
+  <div class="circle c2"></div>
+
+  <div class="hero-text fade-up">
+    <span class="eyebrow">Wellness, on your schedule</span>
+    <h1>Self-care that <span class="italic-sage">comes to you</span>, from people you can trust.</h1>
+    <p class="lead">Serene connects you with hand-vetted wellness, beauty and home-care professionals — massage therapists, skincare experts, stylists and trainers. Book in minutes, relax at home or in studio, and pay only when you're delighted.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">Explore services</a>
+      <a href="#how" class="btn btn-outline">How it works</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">12k+</div><div class="lbl">Happy clients</div></div>
+      <div><div class="num">800+</div><div class="lbl">Verified pros</div></div>
+      <div><div class="num">4.9</div><div class="lbl">Average rating</div></div>
+    </div>
+  </div>
+
+  <div class="hero-media fade-up">
+    <img class="main-img" alt="Relaxing spa wellness treatment"
+      src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80"
+      onerror="this.src='https://picsum.photos/seed/servhero/900/1120'" />
+    <div class="float-badge badge-1">
+      <img class="badge-ava" alt="therapist"
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
+        onerror="this.src='https://picsum.photos/seed/ava1/80'" />
+      <div>
+        <div class="t1">Booked in 90s</div>
+        <div class="t2">Sofia · Massage therapist</div>
+      </div>
+    </div>
+    <div class="float-badge badge-2">
+      <span class="live-dot"></span>
+      <div>
+        <div class="t1">240 pros online</div>
+        <div class="t2" style="font-size:.72rem;color:var(--muted)">Available near you now</div>
+      </div>
+    </div>
+    <div class="rating-badge">
+      <div class="rnum">4.9</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="rsub">9,300+ verified reviews</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<section class="trust">
+  <div class="trust-inner">
+    <div class="fade-up"><div class="num">12,400+</div><div class="lbl">Sessions delivered</div></div>
+    <div class="fade-up"><div class="num">800+</div><div class="lbl">Vetted professionals</div></div>
+    <div class="fade-up"><div class="num">40+</div><div class="lbl">Cities covered</div></div>
+    <div class="fade-up"><div class="num">98%</div><div class="lbl">Would rebook</div></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how wrap" id="how">
+  <div class="head-center fade-up">
+    <span class="eyebrow center">Simple by design</span>
+    <h2 class="section-title">How <span class="italic-sage">Serene</span> works</h2>
+    <p class="lead">From browsing to total relaxation in four effortless steps — no phone tag, no guesswork.</p>
+  </div>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="snum">01</div>
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </div>
+      <h3>Discover</h3>
+      <p>Browse curated treatments and filter by service, price, rating and availability near you.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="snum">02</div>
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      </div>
+      <h3>Book</h3>
+      <p>Pick a verified professional and a time that suits you. Instant confirmation, zero hassle.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="snum">03</div>
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </div>
+      <h3>Relax</h3>
+      <p>Your pro arrives on time with everything needed. Enjoy a premium experience, your way.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="snum">04</div>
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.7 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>
+      </div>
+      <h3>Rate & rebook</h3>
+      <p>Leave a review and save favourites. Rebook your trusted pro in a single tap, anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services wrap" id="services">
+  <div class="sec-head">
+    <div class="fade-up">
+      <span class="eyebrow">Treatments</span>
+      <h2 class="section-title">Services crafted for <span class="italic-sage">you</span></h2>
+    </div>
+    <a href="#cta" class="btn btn-outline fade-up">View all services</a>
+  </div>
+  <div class="grid-4">
+    <a class="svc-card fade-up">
+      <img alt="Massage therapy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc1/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Bestseller</span>
+        <h3>Massage Therapy</h3>
+        <p>Deep tissue, Swedish & prenatal sessions tailored to your body.</p>
+        <div class="svc-meta"><span>★ 4.9 · 60–90 min</span><span class="price">from $59</span></div>
+      </div>
+    </a>
+    <a class="svc-card fade-up">
+      <img alt="Facial and skincare" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc2/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Glow</span>
+        <h3>Facial & Skincare</h3>
+        <p>Custom facials, peels and hydration rituals for radiant skin.</p>
+        <div class="svc-meta"><span>★ 4.8 · 45–75 min</span><span class="price">from $49</span></div>
+      </div>
+    </a>
+    <a class="svc-card fade-up">
+      <img alt="Hair styling" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc3/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Trending</span>
+        <h3>Hair Styling</h3>
+        <p>Cuts, colour and blowouts from award-winning stylists.</p>
+        <div class="svc-meta"><span>★ 4.9 · 60–120 min</span><span class="price">from $39</span></div>
+      </div>
+    </a>
+    <a class="svc-card fade-up">
+      <img alt="Yoga and wellness" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc4/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Mindful</span>
+        <h3>Yoga & Wellness</h3>
+        <p>Private yoga, breathwork and meditation in your own space.</p>
+        <div class="svc-meta"><span>★ 5.0 · 45–60 min</span><span class="price">from $45</span></div>
+      </div>
+    </a>
+    <a class="svc-card fade-up">
+      <img alt="Nail care" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc5/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Pamper</span>
+        <h3>Nail Care</h3>
+        <p>Luxury manicures and pedicures with premium, clean products.</p>
+        <div class="svc-meta"><span>★ 4.8 · 45–60 min</span><span class="price">from $35</span></div>
+      </div>
+    </a>
+    <a class="svc-card fade-up">
+      <img alt="Personal training" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/svc6/700/500'"/>
+      <div class="svc-overlay">
+        <span class="chip">Energise</span>
+        <h3>Personal Training</h3>
+        <p>1-on-1 strength, mobility and recovery coaching that fits your goals.</p>
+        <div class="svc-meta"><span>★ 4.9 · 45–60 min</span><span class="price">from $55</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ PROFESSIONALS ============ -->
+<section class="pros wrap" id="pros">
+  <div class="head-center fade-up">
+    <span class="eyebrow center">Meet the experts</span>
+    <h2 class="section-title">Professionals you'll <span class="italic-sage">love</span></h2>
+    <p class="lead">Every Serene pro is background-checked, certified and rated by real clients — so you're always in expert hands.</p>
+  </div>
+  <div class="pro-grid">
+    <div class="pro-card fade-up">
+      <div class="pro-photo">
+        <img alt="Sofia Marin" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=500&q=80" onerror="this.src='https://picsum.photos/seed/pro1/500/600'"/>
+        <span class="status"><span class="live-dot"></span> Online</span>
+      </div>
+      <div class="pro-body">
+        <h3>Sofia Marin</h3>
+        <div class="role">Massage Therapist</div>
+        <div class="pmeta"><span class="stars">★ 4.9 (320)</span><span>from $59</span></div>
+      </div>
+    </div>
+    <div class="pro-card fade-up">
+      <div class="pro-photo">
+        <img alt="James Okafor" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" onerror="this.src='https://picsum.photos/seed/pro2/500/600'"/>
+        <span class="status"><span class="live-dot"></span> Online</span>
+      </div>
+      <div class="pro-body">
+        <h3>James Okafor</h3>
+        <div class="role">Personal Trainer</div>
+        <div class="pmeta"><span class="stars">★ 4.9 (210)</span><span>from $55</span></div>
+      </div>
+    </div>
+    <div class="pro-card fade-up">
+      <div class="pro-photo">
+        <img alt="Amara Khan" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=500&q=80" onerror="this.src='https://picsum.photos/seed/pro3/500/600'"/>
+        <span class="status"><span class="live-dot"></span> Online</span>
+      </div>
+      <div class="pro-body">
+        <h3>Amara Khan</h3>
+        <div class="role">Skincare Specialist</div>
+        <div class="pmeta"><span class="stars">★ 5.0 (180)</span><span>from $49</span></div>
+      </div>
+    </div>
+    <div class="pro-card fade-up">
+      <div class="pro-photo">
+        <img alt="Liam Bennett" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" onerror="this.src='https://picsum.photos/seed/pro4/500/600'"/>
+        <span class="status"><span class="live-dot"></span> Online</span>
+      </div>
+      <div class="pro-body">
+        <h3>Liam Bennett</h3>
+        <div class="role">Hair Stylist</div>
+        <div class="pmeta"><span class="stars">★ 4.8 (260)</span><span>from $39</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY SERVIFY ============ -->
+<section class="why wrap" id="why">
+  <div class="why-grid">
+    <div class="why-media fade-up">
+      <img alt="Calm wellness studio" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://picsum.photos/seed/why/800/700'"/>
+      <div class="exp"><div class="n">8+</div><div class="l">Years of care</div></div>
+    </div>
+    <div class="why-text fade-up">
+      <span class="eyebrow">Why Serene</span>
+      <h2 class="section-title">Care that feels <span class="italic-sage">personal</span></h2>
+      <p class="lead" style="margin-bottom:1.5rem">We obsess over the details so your only job is to relax. Here's what makes the Serene experience different.</p>
+      <div class="feature">
+        <div class="ficon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h4>Vetted & verified</h4><p>Every professional passes background checks, certification reviews and a hands-on quality trial.</p></div>
+      </div>
+      <div class="feature">
+        <div class="ficon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><h4>On your schedule</h4><p>Same-day and late-evening slots, at home or in studio. Reschedule free up to 4 hours before.</p></div>
+      </div>
+      <div class="feature">
+        <div class="ficon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8BAF8D" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+        <div><h4>Pay with confidence</h4><p>Transparent pricing, secure checkout and a happiness guarantee — or we make it right.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTICLES ============ -->
+<section class="articles wrap" id="articles">
+  <div class="sec-head">
+    <div class="fade-up">
+      <span class="eyebrow">The Journal</span>
+      <h2 class="section-title">Rituals & <span class="italic-sage">insights</span></h2>
+    </div>
+    <a href="#" class="btn btn-outline fade-up">Read the journal</a>
+  </div>
+  <div class="art-grid">
+    <article class="art-card fade-up">
+      <div class="img"><img alt="Morning ritual" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/art1/700/450'"/></div>
+      <div class="art-body">
+        <span class="tag">Wellness</span>
+        <h3>5 morning rituals for a calmer mind</h3>
+        <p>Small, science-backed habits that set the tone for a more grounded day.</p>
+        <div class="meta"><span>Jun 10, 2026</span><span>· 4 min read</span></div>
+      </div>
+    </article>
+    <article class="art-card fade-up">
+      <div class="img"><img alt="Skincare guide" src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/art2/700/450'"/></div>
+      <div class="art-body">
+        <span class="tag">Skincare</span>
+        <h3>Building a skincare routine that lasts</h3>
+        <p>How to layer products, read your skin, and choose treatments that actually work.</p>
+        <div class="meta"><span>Jun 4, 2026</span><span>· 6 min read</span></div>
+      </div>
+    </article>
+    <article class="art-card fade-up">
+      <div class="img"><img alt="Recovery" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://picsum.photos/seed/art3/700/450'"/></div>
+      <div class="art-body">
+        <span class="tag">Recovery</span>
+        <h3>Why recovery is the new training</h3>
+        <p>Massage, mobility and rest — the trio that keeps high performers going.</p>
+        <div class="meta"><span>May 28, 2026</span><span>· 5 min read</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testi wrap">
+  <div class="head-center fade-up">
+    <span class="eyebrow center">Loved by thousands</span>
+    <h2 class="section-title">What our clients <span class="italic-sage">say</span></h2>
+    <p class="lead">Real words from real people who made self-care a habit with Serene.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"Booked a massage at 9am and Sofia was at my door by noon. Genuinely the most relaxed I've felt in months."</p>
+      <div class="who">
+        <img alt="Elena" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" onerror="this.src='https://picsum.photos/seed/t1/80'"/>
+        <div><div class="nm">Elena R.</div><div class="rl">Marketing Lead</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"The quality is consistent every single time. It feels like a luxury spa, but it comes to my living room."</p>
+      <div class="who">
+        <img alt="Marcus" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" onerror="this.src='https://picsum.photos/seed/t2/80'"/>
+        <div><div class="nm">Marcus T.</div><div class="rl">Software Engineer</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"From booking to payment, everything just works. Serene has completely replaced how I manage my wellness."</p>
+      <div class="who">
+        <img alt="Priya" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" onerror="this.src='https://picsum.photos/seed/t3/80'"/>
+        <div><div class="nm">Priya S.</div><div class="rl">Founder</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta wrap" id="cta">
+  <div class="circle cc1"></div>
+  <div class="circle cc2"></div>
+  <div class="cta-inner fade-up">
+    <span class="eyebrow center" style="color:#fff;opacity:.85">Ready when you are</span>
+    <h2>Your next moment of calm is one tap away.</h2>
+    <p>Join 12,000+ people who've made wellness effortless. First booking comes with a happiness guarantee.</p>
+    <div class="btn-row">
+      <a href="#services" class="btn btn-white">Book your session</a>
+      <a href="#how" class="btn btn-outline" style="border-color:#fff;color:#fff">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq wrap" id="faq">
+  <div class="head-center fade-up">
+    <span class="eyebrow center">Good to know</span>
+    <h2 class="section-title">Frequently asked <span class="italic-sage">questions</span></h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item fade-up">
+      <div class="faq-q">How do I book a session?<span class="pm">+</span></div>
+      <div class="faq-a">Browse services, choose a professional and a time that suits you, then confirm. You'll get instant confirmation and reminders — no phone calls needed.</div>
+    </div>
+    <div class="faq-item fade-up">
+      <div class="faq-q">Are the professionals verified?<span class="pm">+</span></div>
+      <div class="faq-a">Yes. Every Serene pro passes identity and background checks, certification reviews and a hands-on quality trial before they ever appear on the platform.</div>
+    </div>
+    <div class="faq-item fade-up">
+      <div class="faq-q">Can I get a session at home?<span class="pm">+</span></div>
+      <div class="faq-a">Absolutely. Most services are available both at home and in studio. Your pro arrives fully equipped, so you can simply relax in your own space.</div>
+    </div>
+    <div class="faq-item fade-up">
+      <div class="faq-q">What is your cancellation policy?<span class="pm">+</span></div>
+      <div class="faq-a">You can reschedule or cancel free of charge up to 4 hours before your appointment. Anything later may incur a small fee that goes to your professional.</div>
+    </div>
+    <div class="faq-item fade-up">
+      <div class="faq-q">How does payment work?<span class="pm">+</span></div>
+      <div class="faq-a">Pay securely in-app with transparent, upfront pricing — no surprises. Every booking is backed by our happiness guarantee, or we'll make it right.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <a href="#" class="logo">Sere<span style="color:var(--sage)">ne</span></a>
+      <p class="foot-about">Premium wellness, beauty and home-care professionals — booked in minutes, delivered with care. Wherever you are, whenever you need it.</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M22 4.5c-.8.4-1.6.6-2.5.8.9-.5 1.6-1.4 1.9-2.4-.8.5-1.8.9-2.8 1.1A4 4 0 0 0 12 7.5c0 .3 0 .6.1.9A11 11 0 0 1 4 4.3a4 4 0 0 0 1.2 5.3c-.6 0-1.2-.2-1.7-.5a4 4 0 0 0 3.2 3.9c-.6.2-1.2.2-1.7.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 17.5a11 11 0 0 0 6 1.8c7.2 0 11.1-6 11.1-11.1v-.5c.8-.6 1.4-1.3 1.9-2.2z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3.3V10H9v3h2v8h3v-8h2.3l.7-3H14V8.5c0-.3.3-.5.6-.5z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M4.5 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM3 8h3v13H3zM9 8h2.8v1.8h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.7 2 3.7 4.7V21h-3v-5.7c0-1.36-.03-3.1-1.9-3.1s-2.2 1.48-2.2 3v5.8H9z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="#">Massage Therapy</a>
+      <a href="#">Facial & Skincare</a>
+      <a href="#">Hair Styling</a>
+      <a href="#">Yoga & Wellness</a>
+      <a href="#">Personal Training</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="#">About us</a>
+      <a href="#">Become a pro</a>
+      <a href="#">Careers</a>
+      <a href="#">The Journal</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="foot-col foot-news">
+      <h4>Stay in the loop</h4>
+      <p style="color:rgba(255,255,255,0.55);font-size:.88rem">Wellness tips and exclusive offers, monthly.</p>
+      <input type="email" placeholder="Your email address" />
+      <button class="btn btn-sage" style="width:100%">Subscribe</button>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Serene. All rights reserved.</span>
+    <span>Privacy · Terms · Cookies</span>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('show'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('show')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
